@@ -56,7 +56,6 @@ However, your data is still stored in ``%appdata%/trilium-data`` (as with any "n
 - Edit the Version attribute in ``build-dir/AppxManifest.xml`` to match the latest release version (not pre-release) of Trilium.
 - Run ``Build.ps1``. This will:
   - Download the latest release of Trilium from github
-  - Generate the package 
-- Edit the Version attribute in ``build-dir/AppxManifest.xml`` to match the latest release version (not pre-release) of Trilium.
-  - The correct version number can be found by right-clicking on ``build-dir/trilium-windows-x64/trilium.exe`` -> Details -> Version.
-  - This is annoying and should be automated (PRs welcome).
+  - Automatically bump the manifest version
+  - Generate the package
+  - Attempt to sign it

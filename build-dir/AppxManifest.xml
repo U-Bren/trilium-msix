@@ -1,79 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Package
-	xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
-  <Identity Name="Zadam.Trilium" Version="0.48.8.0" Publisher="CN=U_Bren, OU=Packaging" ProcessorArchitecture="x64" />
-    <Properties>
-       <DisplayName>Trilium Notes</DisplayName>
-       <PublisherDisplayName>Zadam</PublisherDisplayName>
-			 <Description>A hierarchical note taking application with focus on building large personal knowledge bases</Description>
-      <Logo>images\icon-color.png</Logo>
-    </Properties>
-    <Resources>
-      <Resource Language="am" />
-      <Resource Language="ar" />
-      <Resource Language="bg" />
-      <Resource Language="bn" />
-      <Resource Language="ca" />
-      <Resource Language="cs" />
-      <Resource Language="da" />
-      <Resource Language="de" />
-      <Resource Language="el" />
-      <Resource Language="en-gb" />
-      <Resource Language="en-us" />
-      <Resource Language="es" />
-      <Resource Language="es-419" />
-      <Resource Language="et" />
-      <Resource Language="fa" />
-      <Resource Language="fi" />
-      <Resource Language="fil" />
-      <Resource Language="fr" />
-      <Resource Language="gu" />
-      <Resource Language="he" />
-	  <Resource Language="hi" />
-	  <Resource Language="hr" />
-	  <Resource Language="hu" />
-	  <Resource Language="id" />
-	  <Resource Language="it" />
-	  <Resource Language="ja" />
-	  <Resource Language="kn" />
-	  <Resource Language="ko" />
-	  <Resource Language="lt" />
-	  <Resource Language="lv" />
-	  <Resource Language="ml" />
-	  <Resource Language="mr" />
-	  <Resource Language="ms" />
-	  <Resource Language="nb" />
-	  <Resource Language="nl" />
-	  <Resource Language="pl" />
-	  <Resource Language="pt-br" />
-	  <Resource Language="pt-pt" />
-	  <Resource Language="ro" />
-	  <Resource Language="ru" />
-	  <Resource Language="sk" />
-	  <Resource Language="sl" />
-	  <Resource Language="sv" />
-	  <Resource Language="sw" />
-	  <Resource Language="ta" />
-	  <Resource Language="te" />
-	  <Resource Language="th" />
-	  <Resource Language="tr" />
-	  <Resource Language="uk" />
-	  <Resource Language="vi" />
-	  <Resource Language="zh-cn" />
-	  <Resource Language="zh-tw" />
-    </Resources>
-	  <Dependencies>
-	  <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.10240.0" MaxVersionTested="10.0.19042.1288" />
-	  </Dependencies>
-	  <Capabilities>
-	    <rescap:Capability Name="runFullTrust"/>
-	  </Capabilities>
-    <Applications>
-      <Application Id="Trilium" Executable="trilium-windows-x64\trilium.exe" EntryPoint="Windows.FullTrustApplication">
-        <uap:VisualElements DisplayName="Trilium" Description="A hierarchical note taking application with focus on building large personal knowledge bases"	Square150x150Logo="images\icon-color.png"
-				   Square44x44Logo="images\icon-color.png"	BackgroundColor="transparent" />
-      </Application>
-     </Applications>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  <Identity Name="Zadam.Trilium" Version="0.0.49.4" Publisher="CN=U_Bren, OU=Packaging" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>Trilium Notes</DisplayName>
+    <PublisherDisplayName>Zadam</PublisherDisplayName>
+    <Description>A hierarchical note taking application with focus on building large personal knowledge bases</Description>
+    <Logo>images\icon-color.png</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="am" />
+    <Resource Language="ar" />
+    <Resource Language="bg" />
+    <Resource Language="bn" />
+    <Resource Language="ca" />
+    <Resource Language="cs" />
+    <Resource Language="da" />
+    <Resource Language="de" />
+    <Resource Language="el" />
+    <Resource Language="en-gb" />
+    <Resource Language="en-us" />
+    <Resource Language="es" />
+    <Resource Language="es-419" />
+    <Resource Language="et" />
+    <Resource Language="fa" />
+    <Resource Language="fi" />
+    <Resource Language="fil" />
+    <Resource Language="fr" />
+    <Resource Language="gu" />
+    <Resource Language="he" />
+    <Resource Language="hi" />
+    <Resource Language="hr" />
+    <Resource Language="hu" />
+    <Resource Language="id" />
+    <Resource Language="it" />
+    <Resource Language="ja" />
+    <Resource Language="kn" />
+    <Resource Language="ko" />
+    <Resource Language="lt" />
+    <Resource Language="lv" />
+    <Resource Language="ml" />
+    <Resource Language="mr" />
+    <Resource Language="ms" />
+    <Resource Language="nb" />
+    <Resource Language="nl" />
+    <Resource Language="pl" />
+    <Resource Language="pt-br" />
+    <Resource Language="pt-pt" />
+    <Resource Language="ro" />
+    <Resource Language="ru" />
+    <Resource Language="sk" />
+    <Resource Language="sl" />
+    <Resource Language="sv" />
+    <Resource Language="sw" />
+    <Resource Language="ta" />
+    <Resource Language="te" />
+    <Resource Language="th" />
+    <Resource Language="tr" />
+    <Resource Language="uk" />
+    <Resource Language="vi" />
+    <Resource Language="zh-cn" />
+    <Resource Language="zh-tw" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.10240.0" MaxVersionTested="10.0.19042.1288" />
+  </Dependencies>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+  <Applications>
+    <Application Id="Trilium" Executable="trilium-windows-x64\trilium.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="Trilium" Description="A hierarchical note taking application with focus on building large personal knowledge bases" Square150x150Logo="images\icon-color.png" Square44x44Logo="images\icon-color.png" BackgroundColor="transparent" />
+    </Application>
+  </Applications>
 </Package>

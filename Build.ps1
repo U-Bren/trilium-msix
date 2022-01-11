@@ -12,15 +12,19 @@ function Get-LatestRelease {
     $innerDirectory = $false
     $preRelease = $false
     $ProgressPreference = 'SilentlyContinue' # Fix for slow download due to printing in the progress bar EVERY. SINGLE. BYTE. received.
-
+    
     if ($preRelease) {
         $releasesUri = "https://api.github.com/repos/$repo/releases"
-        $downloadUri = ((Invoke-RestMethod -Method GET -Uri $releasesUri)[0].assets | Where-Object name -like $filenamePattern ).browser_download_url
+        $ReleaseInfo = Invoke-RestMethod -Method GET -Uri $releasesUri
+        $downloadUri = ($ReleaseInfo[0].assets | Where-Object name -like $filenamePattern ).browser_download_url
     }
     else {
         $releasesUri = "https://api.github.com/repos/$repo/releases/latest"
-        $downloadUri = ((Invoke-RestMethod -Method GET -Uri $releasesUri).assets | Where-Object name -like $filenamePattern ).browser_download_url
+        $ReleaseInfo = Invoke-RestMethod -Method GET -Uri $releasesUri
+        $downloadUri = ($ReleaseInfo.assets | Where-Object name -like $filenamePattern ).browser_download_url
     }
+
+    $ReleaseTag = $ReleaseInfo.tag_name
 
     $pathZip = Join-Path -Path $([System.IO.Path]::GetTempPath()) -ChildPath $(Split-Path -Path $downloadUri -Leaf)
 
@@ -41,7 +45,24 @@ function Get-LatestRelease {
     }
 
     Remove-Item $pathZip -Force
+
+    //FIXME: Refactoring needed.
+    $ReleaseVer = $ReleaseTag.Replace("v","0.")
+    Bump-Version -FileName "build-dir\AppxManifest.xml" -NewVersion $ReleaseVer
 }
+
+
+function Bump-Version {
+    param ([String] $FileName, [String] $NewVersion)
+    $xml = New-Object xml
+    $xml.Load($FileName)
+    $xmlVer = $xml.GetElementsByTagName("Identity")[0].Attributes.GetNamedItem("Version")
+    $xmlVer | Out-Host
+    $xmlVer.Value = $NewVersion
+    $xmlVer | Out-Host
+    $xml.Save($FileName)
+}
+
 
 function New-Package {
     makeappx pack /d '.\build-dir\' /p 'Zadam.Trilium.msix'   
@@ -49,6 +70,10 @@ function New-Package {
 
 function Sign-Package {
     $certPath = '.\private\U_Bren-windows-packaging-selfsign.pfx'
+    if(!(Test-Path -Path $certPath -PathType Leaf)) {
+        Write-Error "Certificate not found at path $certPath. Aborting package signing."
+        return
+    }
     $password = Read-Host -Prompt "Enter the certificate's password"
     Clear-Host #FIXME: Find a better solution (-asProtectedString to String convertion)
     signtool sign /fd SHA256 /td SHA256 /f "$certPath" /p "$password" "./Zadam.Trilium.msix"
@@ -56,14 +81,10 @@ function Sign-Package {
 }
 
 Get-LatestRelease
-
-Write-Host 'If not already done, please bump the version in the manifest and then press Enter'
-Read-Host
 Write-Host "Generating the package..."
-
 New-Package
-
-Write-Host "Attempting to sign the package."
+Write-Host 
+"Attempting to sign the package."
 try {
     Sign-Package
 } catch {
