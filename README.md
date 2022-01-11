@@ -11,7 +11,7 @@ PRs warmly welcomed.
 - Right-click on the downloaded .msix -> Properties -> Digital Signatures -> Select the first entry -> Details -> Show certificate -> Install a certificate -> Current Machine -> Select the following store: Trusted People.
   - This only needs to be done once per year (on the next update after the certificate validity will have expired)
   - This is needed for the App installer to install the application, as otherwise it will refuse as the application is untrusted.
-  - Open the .msix using App installer.
+- Open the .msix using App installer.
 
 
 ## Dependencies
