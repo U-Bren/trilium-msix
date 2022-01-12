@@ -66,7 +66,7 @@ function Bump-Version {
 
 
 function New-Package {
-    makeappx pack /d '.\build-dir\' /p 'Zadam.Trilium.msix'   
+    makeappx pack /o /d '.\build-dir\' /p 'Zadam.Trilium.msix'   
 }
 
 function Sign-Package {
