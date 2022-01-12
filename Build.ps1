@@ -46,8 +46,9 @@ function Get-LatestRelease {
 
     Remove-Item $pathZip -Force
 
-    //FIXME: Refactoring needed.
-    $ReleaseVer = $ReleaseTag.Replace("v","")
+    # FIXME: Refactoring needed.
+    # FIXME: Try to comply with "Major.Minor.Build.Revision"
+    $ReleaseVer = $ReleaseTag.Replace("v","0.")
     Bump-Version -FileName "build-dir\AppxManifest.xml" -NewVersion $ReleaseVer
 }
 
